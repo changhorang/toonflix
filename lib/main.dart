@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/widget/button.dart';
 
 void main() {
   runApp(const App());
@@ -9,12 +10,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
         home: Scaffold(
             backgroundColor: const Color(0xFF181818),
             body: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -64,23 +64,17 @@ class App extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Row(
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colors.amber,
-                              borderRadius: BorderRadius.circular(45)),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 15,
-                              horizontal: 40,
-                            ),
-                            child: Text(
-                              'Transfer',
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          ),
-                        )
+                        Button(
+                            text: "Transfer",
+                            bgColor: Color(0xFFF1B33B),
+                            textColor: Colors.black),
+                        Button(
+                            text: "Request",
+                            bgColor: Color(0xFF1F2123),
+                            textColor: Colors.white),
                       ],
                     )
                   ],
