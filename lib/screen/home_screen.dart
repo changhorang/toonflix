@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
         totalPomodoros = totalPomodoros + 1;
         isRunning = false;
         totalSeconds = twentyFiveMinutes;
+        timer.cancel();
       });
     } else {
       setState(() {
@@ -43,6 +44,15 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onRestartPressed() {
+    timer.cancel();
+    setState(() {
+      totalSeconds = twentyFiveMinutes;
+      totalPomodoros = 0;
+      isRunning = false;
+    });
+  }
+
   String format(int seconds) {
     var duration = Duration(seconds: seconds);
 
@@ -50,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return duration.toString().split(".").first.substring(2, 7);
   }
 
+  // restart session 구현
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             )),
         Flexible(
-            flex: 2,
+            flex: 1,
             child: Container(
               child: Center(
                   child: IconButton(
@@ -78,6 +89,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(isRunning
                     ? Icons.pause_circle_outline
                     : Icons.play_circle_fill_outlined),
+              )),
+            )),
+        Flexible(
+            flex: 1,
+            child: Container(
+              child: Center(
+                  child: IconButton(
+                iconSize: 120,
+                color: Theme.of(context).cardColor,
+                onPressed: onRestartPressed,
+                // onPressed: () {},
+                icon: const Icon(Icons.restart_alt_rounded),
               )),
             )),
         Flexible(
